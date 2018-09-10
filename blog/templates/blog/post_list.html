@@ -1,33 +1,11 @@
-{% load static %}
+{% extends 'blog/base.html' %}
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Rachel's Blog</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,600|Poppins:700" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-  </head>
-  <body>
-    <header class="container-fluid">
-      <h1><a href="/">Blog Posts!</a></h1>
-    </header>
-    <div class="main">
-      <div class="content container-fluid">
-        <div class="row">
-          <div class="col-md-8">
-            {% for post in posts %}
-              <div class="blog-post">
-                <h3><a href="">{{ post.title }}</a></h3>
-                <p class="blog-date small font-italic">Published on: {{ post.published_date }}</p>
-                <p>{{ post.text|linebreaksbr }}</p>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-    <div>
-  </body>
-</html>
+{% block content %}
+  {% for post in posts %}
+    <div class="blog-post">
+      <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+      <p class="blog-date small font-italic">Published on: {{ post.published_date }}</p>
+      <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
