@@ -1,17 +1,27 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-  <div class="blog-post">
-    <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
-    {% if post.published_date %}
-      <p class="blog-date small font-italic">Published on: {{ post.published_date }}</p>
-    {% else %}
-      <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-default">Publish</a>
-    {% endif %}
-    <p>{{ post.text|linebreaksbr }}</p>
-    {% if user.is_authenticated %}
-      <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="fas fa-pencil-alt"></span></a>
-      <a href="{% url 'post_remove' pk=post.pk %}" class="btn btn-default"><span class="fas fa-trash-alt"></span></a>
-    {% endif %}
+  <div class="blog-post container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
+      </div>
+      <div class="col-md-6 text-md-right">
+        {% if user.is_authenticated %}
+          <a class="btn btn-secondary" href="{% url 'post_edit' pk=post.pk %}"><span class="fas fa-pencil-alt"></span></a>
+          <a href="{% url 'post_remove' pk=post.pk %}" class="btn btn-secondary"><span class="fas fa-trash-alt"></span></a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        {% if post.published_date %}
+          <p class="blog-date small font-italic">Published on: {{ post.published_date }}</p>
+        {% else %}
+          <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-primary">Publish</a>
+        {% endif %}
+        <p>{{ post.text|linebreaksbr }}</p>
+      </div>
+    </div>
   </div>
 {% endblock %}
