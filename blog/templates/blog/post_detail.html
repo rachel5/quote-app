@@ -5,6 +5,8 @@
     <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
     {% if post.published_date %}
       <p class="blog-date small font-italic">Published on: {{ post.published_date }}</p>
+    {% else %}
+      <a href="{% url 'post_publish' pk=post.pk %}" class="btn btn-default">Publish</a>
     {% endif %}
     <p>{{ post.text|linebreaksbr }}</p>
     {% if user.is_authenticated %}
