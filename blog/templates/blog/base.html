@@ -20,6 +20,8 @@
           {% if user.is_authenticated %}
             <a href="{% url 'post_new' %}" class="top-menu btn btn-light"><span class="fas fa-plus-circle"></span></a>
             <a href="{% url 'post_draft_list' %}" class="top-menu btn btn-light"><span class="fas fa-pen-square"></span></a>
+          {% else %}
+            <a href="{% url 'login' %}" class="top-menu btn btn-light"><span class="fas fa-id-card pr-2"></span>Log In</a>
           {% endif %}
         </div>
       </div>
