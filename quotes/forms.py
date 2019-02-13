@@ -1,9 +1,9 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Post
+from .models import Quote
 
-class PostForm(forms.ModelForm):
+class QuoteForm(forms.ModelForm):
 
   def __init__(self, *args, **kwargs):
     super().__init__(*args, **kwargs)
@@ -11,7 +11,7 @@ class PostForm(forms.ModelForm):
     self.fields['text'].widget.attrs.update({'class': 'form-control'})
 
   class Meta:
-    model = Post
+    model = Quote
     fields = ('title', 'text')
     labels = {
       'title': _('What do you want this to be called?'),

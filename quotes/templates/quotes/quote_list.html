@@ -1,0 +1,11 @@
+{% extends 'quotes/base.html' %}
+
+{% block content %}
+  {% for quote in quotes %}
+    <div class="quote">
+      <h3><a href="{% url 'quote_detail' pk=quote.pk %}">{{ quote.title }}</a></h3>
+      <p class="quote-date small font-italic">Published on: {{ quote.published_date }}</p>
+      <p>{{ quote.text|linebreaksbr }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}
