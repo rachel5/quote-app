@@ -3,9 +3,10 @@
 {% block content %}
   {% for quote in quotes %}
     <div class="quote">
-      <h1><a href="{% url 'quote_detail' pk=quote.pk %}">{{ quote.title }}</a></h1>
+      <h1><a href="{% url 'quote_detail' pk=quote.pk %}">{{ quote.attribution }}</a></h1>
       <p class="quote-date small font-italic">Created: {{ quote.created_date|date:'d-m-y' }}</p>
-      <p>{{ quote.text|truncatechars:200 }}</p>
+      <p>{{ quote.quote_text|truncatechars:200 }}</p>
+      <p>{{ quote.quote_source }}</p>
     </div>
   {% endfor %}
 {% endblock %}
